@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <title>{% block block_title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="{% static 'js/bootstrap.bundle.js'%}" type="text/javascript">
+    </script>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{%url 'home'%}"> <img src="{% static 'images/clouds.png'%}" alt="" width="50" height="44" class="d-inline-block align-text-top"> Medic</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link {% block home_class %}active{% endblock %}" aria-current="page" href="{%url 'home'%}">Home</a>
+            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+            <a class="nav-link {% block register_class %}{% endblock %}" href="{% url 'loginapp:register' %}">Register</a>
+            {% if user.is_authenticated %}
+                    <a class="nav-link {% block logout_class %}{% endblock %}" href="{% url 'user_logout' %}">Logout</a>
+                    <a class="nav-link {% block special_class %}{% endblock %}" href="{% url 'special' %}">special</a>
+
+            {% else %}
+                   <a class="nav-link {% block login_class %}{% endblock %}" href="{% url 'loginapp:user_login' %}">Login</a>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li><a class="navbar-brand" href="{%url 'home'%}">Home</a></li>
+          <li><a class="nav-link" href="{% url 'loginapp:register' %}"> Register</a></li>
+          <li><a class="nav-link" href="{% url 'admin:index' %}"> Admin </a></li>
+        </ul>
+
+      </div>
+
+    </nav> -->
+{% block body_block%}
+
+{% endblock %}
+
+  </body>
+</html>

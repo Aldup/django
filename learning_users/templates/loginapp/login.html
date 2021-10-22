@@ -1,0 +1,24 @@
+{% extends 'loginapp/base.html'%}
+{% block login_class %}active{% endblock %}
+{% block home_class %}{% endblock %}"
+
+{% block body_block %}
+
+<div class="container p-5 mt-4 bg-light rounded-3 ">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">Please Login</h1>
+    <form action="{% url 'loginapp:user_login' %}" method="post">
+      {% csrf_token %}
+      <label for="username">Username</label>
+      <input type="text" name="username" value="" placeholder="Type in your username">
+
+      <label for="password">Password</label>
+      <input type="password" name="password" value="">
+
+      <input class="btn btn-light" style="background-color : #bde0fe;" type="submit" name="" value="Login">
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

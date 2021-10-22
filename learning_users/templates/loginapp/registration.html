@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends 'loginapp/base.html' %}
+
+{% block block_title %}Registration{% endblock %}
+
+{% block home_class %}{% endblock %}
+{% block register_class %}active{% endblock %}
+
+{% block body_block%}
+<div class=" container p-5 mt-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    {% if registered %}
+      <h1 class="display-5 fw-bold">Thank you for registering </h1>
+    {% else %}
+      <h1 class="display-5 fw-bold">Register Here!</h1>
+      <p class="col-md-8 fs-4">Fill out the form:</p>
+      <form class="form-control" enctype="multipart/form-data"  method="post" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ profile_form.as_p }}
+
+        <input class="btn btn-light" style="background-color : #bde0fe;" type="submit" value="Register">
+      </form>
+      {% endif %}
+  </div>
+</div>
+
+
+
+{% endblock %}
